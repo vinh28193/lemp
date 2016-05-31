@@ -17,14 +17,19 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-authclient": "^2.0.0",
+        "yiisoft/yii2-jui": "^2.0.0",
+        "yiisoft/yii2-redis": "~2.0.0",
+        "yiisoft/yii2-imagine": "~2.0.0",
+        "kartik-v/yii2-widgets": "*",
+        "pendalf89/yii2-filemanager": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*",
-        "redo/redo-vn": "*"
+        "yiisoft/yii2-faker": "*"
     },
     "config": {
         "process-timeout": 1800
