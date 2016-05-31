@@ -41,90 +41,10 @@ This way is the easiest but long (~20 min).
 That's all. You just need to wait for completion! After that you can access project locally by URLs:
 * frontend: http://y2aa-frontend.dev
 * backend: http://y2aa-backend.dev
-   
-#### Manual for Windows users
-1. Install [Git](https://git-scm.com/downloads)
-2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-3. Install [Vagrant](https://www.vagrantup.com/downloads.html)
-4. Reboot
-5. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
-6. Prepare project:
-   * download repo [yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced/archive/master.zip)
-   * unzip it
-   * go into directory `lemp/vagrant/config`
-   * copy `vagrant-local.example.yml` to `vagrant-local.yml`
-
-7. Place your GitHub personal API token to `vagrant-local.yml`
-8. Add the following lines to [hosts file](https://en.wikipedia.org/wiki/Hosts_(file)):
-   
-   ```
-   192.168.83.137 y2aa-frontend.dev
-   192.168.83.137 y2aa-backend.dev
-   ```
-
-9. Open terminal (`cmd.exe`), **change directory to project root** and run commands:
-
-   ```bash
-   vagrant plugin install vagrant-hostmanager
-   vagrant up
-   ```
-   
-   (You can read [here](http://www.wikihow.com/Change-Directories-in-Command-Prompt) how to change directories in command prompt) 
-
-That's all. You just need to wait for completion! After that you can access project locally by URLs:
-* frontend: http://y2aa-frontend.dev
-* backend: http://y2aa-backend.dev
-
-## Installing using Composer
-
-If you do not have [Composer](http://getcomposer.org/), follow the instructions in the
-[Installing Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide/start-installation.md#installing-via-composer) section of the definitive guide to install it.
-
-With Composer installed, you can then install the application using the following commands:
-
-    composer global require "fxp/composer-asset-plugin:~1.1.1"
-    composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
-
-The first command installs the [composer asset plugin](https://github.com/francoispluchino/composer-asset-plugin/)
-which allows managing bower and npm package dependencies through Composer. You only need to run this command
-once for all. The second command installs the advanced application in a directory named `yii-application`.
-You can choose a different directory name if you want.
-
-## Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `advanced` that is directly under the Web root.
-
-Then follow the instructions given in the next subsection.
-
 
 ## Preparing application
 
-After you install the application, you have to conduct the following steps to initialize
-the installed application. You only need to do these once for all.
-
-1. Open a console terminal, execute the `init` command and select `dev` as environment.
-
-   ```
-   /path/to/php-bin/php /path/to/yii-application/init
-   ```
-
-   If you automate it with a script you can execute `init` in non-interactive mode.
-
-   ```
-   /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All
-   ```
-
-2. Create a new database and adjust the `components['db']` configuration in `common/config/main-local.php` accordingly.
-
-3. Open a console terminal, apply migrations with command `/path/to/php-bin/php /path/to/yii-application/yii migrate`.
-
-4. Set document roots of your web server:
-
-   - for frontend `/path/to/yii-application/frontend/web/` and using the URL `http://frontend.dev/`
-   - for backend `/path/to/yii-application/backend/web/` and using the URL `http://backend.dev/`
-
-   For Apache it could be the following:
+  For Apache it could be the following:
 
    ```apache
        <VirtualHost *:80>
