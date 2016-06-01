@@ -1,9 +1,9 @@
 <?php
 return [
+    'id' => 'advanced',
+    'name' => 'Advanced Appilcation',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-    ],
+    'sourceLanguage'=>'en',
+    'language'=>'en',
+    'bootstrap' => ['log'],
 ];
