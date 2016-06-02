@@ -5,10 +5,7 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
+
 
 AppAsset::register($this);
 ?>
@@ -18,6 +15,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic' rel='stylesheet'>
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -25,54 +23,51 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
+<!-- Aside Start-->
+<aside class="left-panel">
+
+    <!-- brand -->
+    <div class="logo">
+        <a href="index.html" class="logo-expanded">
+            <img src="img/single-logo.png" alt="logo">
+            <span class="nav-label">Velonic</span>
+        </a>
+    </div>
+    <!-- / brand -->
+
+    <?=$this->render('_navigation')?>
+        
+</aside>
+<!-- Aside Ends-->
+
+
+<!--Main Content Start -->
+<section class="content">
+    <?=$this->render('_header')?>
+    
+
+
+    <!-- Page Content Start -->
+    <!-- ================== -->
+
+    <div class="wraper container-fluid">
         <?= $content ?>
+
     </div>
-</div>
+    <!-- Page Content Ends -->
+    <!-- ================== -->
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+    <!-- Footer Start -->
+    <footer class="footer">
+        2015 © Velonic.
+    </footer>
+    <!-- Footer Ends -->
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
+
+</section>
+<!-- Main Content Ends -->
 <?php $this->endBody() ?>
 </body>
 </html>

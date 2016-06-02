@@ -12,12 +12,22 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/animate.css',
+        'css/bootstrap-reset.css',
+        'css/style.css',
+        'css/helper.css',
     ];
     public $js = [
+        'js/wow.min.js',
+        'js/jquery.app.js',
+        'js/jquery.chat.js',
+        'js/jquery.todo.js',
     ];
     public $depends = [
+        'yii\web\JQueryAsset',
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        'backend\assets\FontAwesomeAsset',
+        'backend\assets\Html5ShivAsset'
     ];
 }
