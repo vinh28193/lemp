@@ -29,9 +29,6 @@
         "bower-asset/html5shiv": "^3.0",
         "bower-asset/jquery-slimscroll": "^1.3",
         "bower-asset/flot": "^0.8",
-        "bower-asset/angular": "*",
-        "bower-asset/angular-route": "*",
-        "bower-asset/angular-strap": "*",
         "kartik-v/yii2-widgets": "*",
         "pendalf89/yii2-filemanager": "*"
     },
