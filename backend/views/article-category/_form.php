@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -11,19 +13,14 @@ use yii\widgets\ActiveForm;
 <div class="article-category-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'parent_id')->textInput() ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
+    <div class="form-group">
+        <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="form-group">
+        <?= $form->field($model, 'parent_id')->widget(\kartik\widgets\Select2::className(),[
+                'data' => ArrayHelper::map($articleCategories,'id','title')
+            ]) ?>
+    </div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

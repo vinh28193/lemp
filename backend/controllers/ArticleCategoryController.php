@@ -64,12 +64,13 @@ class ArticleCategoryController extends Controller
     public function actionCreate()
     {
         $model = new ArticleCategory();
-
+        $articleCategories = $model::find()->asArray()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'articleCategories' => $articleCategories
             ]);
         }
     }
@@ -83,12 +84,13 @@ class ArticleCategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $articleCategories = ArticleCategory::find()->asArray()->all();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'articleCategories' => $articleCategories
             ]);
         }
     }

@@ -10,12 +10,14 @@ $this->title = 'Create Article Category';
 $this->params['breadcrumbs'][] = ['label' => 'Article Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="article-category-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class="panel panel-default" id="article-category-create">
+    <div class="panel-heading"> 
+        <h3 class="panel-title"><?= Html::encode($this->title) ?></h3> 
+    </div> 
+    <div class="panel-body"> 
+        <?= $this->render('_form', [
+	        'model' => $model,
+	        'articleCategories' => $articleCategories
+	    ]) ?>
+    </div> 
 </div>

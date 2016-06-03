@@ -45,7 +45,7 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/post', 'v1/comment', 'v2/post']],
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/article-category']],
                 'GET v1/article-category' => 'v1/article-category/index',
             ],
         ],

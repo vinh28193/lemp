@@ -10,12 +10,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Article Categories', 'url' => ['in
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="article-category-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+<div class="panel panel-default" id="article-category-update">
+    <div class="panel-heading"> 
+        <h3 class="panel-title"><?= Html::encode($this->title) ?></h3> 
+    </div> 
+    <div class="panel-body"> 
+        <?= $this->render('_form', [
+	        'model' => $model,
+	        'articleCategories' => $articleCategories
+	    ]) ?>
+    </div> 
 </div>
