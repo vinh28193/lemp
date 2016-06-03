@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "91dc4223aa6db41f30a25a8bdce08dac",
-    "content-hash": "fa0141e70a0879b167e8dd89791d8724",
+    "hash": "b6ca0cb5bffcf8fb973a2d0d2d3bbe54",
+    "content-hash": "6222236c405ec6e0fa73266a22844292",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -134,110 +134,6 @@
                 "yii2"
             ],
             "time": "2016-01-04 06:35:58"
-        },
-        {
-            "name": "bower-asset/angular",
-            "version": "v1.5.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/angular/bower-angular.git",
-                "reference": "87fbd43f0f4a4d5cbacd284dd89f2291a98805dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/angular/bower-angular/zipball/87fbd43f0f4a4d5cbacd284dd89f2291a98805dc",
-                "reference": "87fbd43f0f4a4d5cbacd284dd89f2291a98805dc",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./angular.js",
-                "bower-asset-ignore": []
-            },
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/angular-route",
-            "version": "v1.5.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/angular/bower-angular-route.git",
-                "reference": "16ab7a0572be02f2af0e9dd0bc01079628742a48"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/angular/bower-angular-route/zipball/16ab7a0572be02f2af0e9dd0bc01079628742a48",
-                "reference": "16ab7a0572be02f2af0e9dd0bc01079628742a48",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/angular": "1.5.6"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./angular-route.js",
-                "bower-asset-ignore": []
-            },
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/angular-strap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mgcrea/angular-strap.git",
-                "reference": "878f9dd28c3c4dd43289ae4d90334ed791ea24aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mgcrea/angular-strap/zipball/878f9dd28c3c4dd43289ae4d90334ed791ea24aa",
-                "reference": "878f9dd28c3c4dd43289ae4d90334ed791ea24aa",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/angular": ">=1.2.21,<2.0.0"
-            },
-            "require-dev": {
-                "bower-asset/angular-animate": "~1.5",
-                "bower-asset/angular-i18n": "~1.5",
-                "bower-asset/angular-mocks": "~1.5",
-                "bower-asset/angular-motion": ">=0.4.3,<0.5.0",
-                "bower-asset/angular-route": "~1.5",
-                "bower-asset/angular-sanitize": "~1.5",
-                "bower-asset/angular-scenario": "~1.5",
-                "bower-asset/bootstrap": ">=3.3.6,<4.0.0",
-                "bower-asset/bootstrap-additions": ">=0.3.1,<0.4.0",
-                "bower-asset/fastclick": ">=1.0.6,<2.0.0",
-                "bower-asset/font-awesome": ">=4.5.0,<5.0.0",
-                "bower-asset/highlightjs": ">=9.1.0,<10.0.0",
-                "bower-asset/jquery": ">=2.2.0,<3.0.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/angular-strap.js",
-                    "dist/angular-strap.tpl.js"
-                ],
-                "bower-asset-ignore": [
-                    "docs",
-                    "test",
-                    "tasks",
-                    "CONTRIBUTING.md"
-                ],
-                "branch-alias": {
-                    "dev-master": "2.3.8-dev"
-                }
-            },
-            "description": "AngularStrap - AngularJS directives for Bootstrap",
-            "keywords": [
-                "angular",
-                "bootstrap"
-            ],
-            "time": "2016-05-09 12:23:39"
         },
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -726,12 +622,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/OwlCarousel2/OwlCarousel2.git",
-                "reference": "5ef95f486006ed15353f96169f6383659b4ae8c8"
+                "reference": "326dd69a0afc217212ab38af2b4cddc69a88df09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OwlCarousel2/OwlCarousel2/zipball/5ef95f486006ed15353f96169f6383659b4ae8c8",
-                "reference": "5ef95f486006ed15353f96169f6383659b4ae8c8",
+                "url": "https://api.github.com/repos/OwlCarousel2/OwlCarousel2/zipball/326dd69a0afc217212ab38af2b4cddc69a88df09",
+                "reference": "326dd69a0afc217212ab38af2b4cddc69a88df09",
                 "shasum": ""
             },
             "require": {
@@ -745,7 +641,7 @@
                 ],
                 "bower-asset-ignore": []
             },
-            "time": "2016-05-20 18:18:23"
+            "time": "2016-06-02 06:55:37"
         },
         {
             "name": "bower-asset/punycode",
@@ -1150,12 +1046,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-krajee-base.git",
-                "reference": "7f7a45ffe193fe673f72b9effc01b08499f2a454"
+                "reference": "473fb568ff1144dc49bdb74f40a5d7f025fc72e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/7f7a45ffe193fe673f72b9effc01b08499f2a454",
-                "reference": "7f7a45ffe193fe673f72b9effc01b08499f2a454",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/473fb568ff1144dc49bdb74f40a5d7f025fc72e4",
+                "reference": "473fb568ff1144dc49bdb74f40a5d7f025fc72e4",
                 "shasum": ""
             },
             "require": {
@@ -1193,7 +1089,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-05-07 19:45:52"
+            "time": "2016-06-02 16:20:24"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -1767,12 +1663,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "6919d5096ca83ab4a1b163fcd09fb023814d1003"
+                "reference": "f44fcca6778157ec6034cde0b78ec60a5230e36d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/6919d5096ca83ab4a1b163fcd09fb023814d1003",
-                "reference": "6919d5096ca83ab4a1b163fcd09fb023814d1003",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/f44fcca6778157ec6034cde0b78ec60a5230e36d",
+                "reference": "f44fcca6778157ec6034cde0b78ec60a5230e36d",
                 "shasum": ""
             },
             "require": {
@@ -1812,7 +1708,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-04-19 13:22:56"
+            "time": "2016-06-02 16:20:58"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
