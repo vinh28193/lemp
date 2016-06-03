@@ -13,11 +13,14 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
-            'basePath' => '@app/versions/v1',
             'class' => 'api\versions\v1\Version1'
         ]
     ],
     'components' => [
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+        ],
         'response' => [
             'format' => yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
@@ -34,7 +37,7 @@ return [
             'class' => '\yii\web\Request',
             'enableCookieValidation' => false,
             'parsers' => [
-                'application/json' => yii\web\JsonParser::className(),
+                'application/json' => 'yii\web\JsonParser',
             ],
         ],
         'urlManager' => [
@@ -43,10 +46,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/post', 'v1/comment', 'v2/post']],
-                'OPTIONS v1/user/login' => 'v1/user/login',
-                'POST v1/user/login' => 'v1/user/login',
-                'POST v2/user/login' => 'v2/user/login',
-                'OPTIONS v2/user/login' => 'v2/user/login',
+                'GET v1/article-category' => 'v1/article-category/index',
             ],
         ],
     ],

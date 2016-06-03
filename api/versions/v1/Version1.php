@@ -1,7 +1,9 @@
 <?php
 namespace api\versions\v1;
 
-class Module extends \yii\base\Module
+use yii\base\Module;
+
+class Version1 extends Module
 {
     public $controllerNamespace = 'api\versions\v1\controllers';
 

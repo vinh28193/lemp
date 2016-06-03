@@ -1,13 +1,14 @@
 <?php
 namespace common\models;
+
 use Yii;
-use yii\base\NotSupportedException;
-use yii\behaviors\AttributeBehavior;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\base\NotSupportedException;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+use yii\behaviors\AttributeBehavior;
+use yii\behaviors\TimestampBehavior;
 /**
  * User model
  *
