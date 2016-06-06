@@ -3,56 +3,16 @@ var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'toaster', 'ngSanitiz
 app.config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
 
     var modulesPath = 'modules';
-
     $routeProvider
 
         .when('/', {
-            templateUrl: modulesPath + '/site/views/main.html'
+            templateUrl: modulesPath + '/article/views/index.html',
+            controller: 'ArticleIndex',
         })
 
-        .when('/login', {
-            templateUrl: modulesPath + '/site/views/login.html',
-            controller: 'SiteLogin'
-        })
-
-        .when('/post/published', {
-            templateUrl: modulesPath + '/post/views/index.html',
-            controller: 'PostIndex',
-            resolve: {
-                status: function () {
-                    return 2;
-                }
-            }
-        })
-
-        .when('/post/draft', {
-            templateUrl: modulesPath + '/post/views/index.html',
-            controller: 'PostIndex',
-            resolve: {
-                status: function () {
-                    return 1;
-                }
-            }
-        })
-
-        .when('/post/create', {
-            templateUrl: modulesPath + '/post/views/form.html',
-            controller: 'PostCreate'
-        })
-
-        .when('/post/:id/edit', {
-            templateUrl: modulesPath + '/post/views/form.html',
-            controller: 'PostEdit'
-        })
-
-        .when('/post/:id/delete', {
-            templateUrl: modulesPath + '/post/views/delete.html',
-            controller: 'PostDelete'
-        })
-
-        .when('/post/:id', {
-            templateUrl: modulesPath + '/post/views/view.html',
-            controller: 'PostView'
+        .when('/article/:id', {
+            templateUrl: modulesPath + '/article/views/view.html',
+            controller: 'ArticleView'
         })
 
         .when('/404', {
@@ -92,14 +52,14 @@ app.service('rest', function ($http, $location, $routeParams) {
 
     return {
 
-        baseUrl: 'https://yii2-rest-githubjeka.c9.io/api/web/',
+        baseUrl: 'http://dev-yii.api:81/',
         path: undefined,
 
-        models: function () {
+        all: function () {
             return $http.get(this.baseUrl + this.path + location.search);
         },
 
-        model: function () {
+        one: function () {
             if ($routeParams.expand != null) {
                 return $http.get(this.baseUrl + this.path + "/" + $routeParams.id + '?expand=' + $routeParams.expand);
             }
