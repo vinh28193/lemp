@@ -19,8 +19,7 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', function ($l
             templateUrl: '404.html'
         })
 
-        .otherwise({redirectTo: '/404'})
-    ;
+        .otherwise({redirectTo: '/404'});
 
     $locationProvider.html5Mode(true).hashPrefix('!');
     $httpProvider.interceptors.push('authInterceptor');
@@ -70,15 +69,15 @@ app.service('rest', function ($http, $location, $routeParams) {
             return $http.get(this.baseUrl + this.path);
         },
 
-        postModel: function (model) {
-            return $http.post(this.baseUrl + this.path, model);
+        post: function (params) {
+            return $http.post(this.baseUrl + this.path, params);
         },
 
-        putModel: function (model) {
-            return $http.put(this.baseUrl + this.path + "/" + $routeParams.id, model);
+        put: function (params) {
+            return $http.put(this.baseUrl + this.path + "/" + $routeParams.id, params);
         },
 
-        deleteModel: function () {
+        delete: function () {
             return $http.delete(this.baseUrl + this.path);
         }
     };
@@ -95,6 +94,7 @@ app.directive('login', ['$http', function ($http) {
         template: '<a href="login" ng-if="isGuest">Login</a>'
     }
 }])
+
 app.filter('checkmark', function () {
     return function (input) {
         return input ? '\u2713' : '\u2718';

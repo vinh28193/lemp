@@ -87,7 +87,7 @@ class ArticleController extends ActiveController
     {
         $class = $this->modelClass;
         return new ActiveDataProvider([
-            'query' => $class::find()
+            'query' => $class::find()->with('category')
         ]);
     }
 

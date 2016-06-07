@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace common\widgets;
+namespace backend\widgets;
 
 use Yii;
 

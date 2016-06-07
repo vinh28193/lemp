@@ -1,12 +1,7 @@
 <!-- Navbar Start -->
 <nav class="navigation">
     <ul class="list-unstyled">
-        <li class="has-submenu active"><a href="#"><i class="fa fa-envelope-o"></i> <span class="nav-label">Dashboard</span></a>
-            <ul class="list-unstyled">
-                <li class="active"><a href="index.html">Dashboard v1</a></li>
-                <li><a href="dashboard2.html">Dashboard v2</a></li>
-            </ul>
-        </li>
+        <li><a href="#"><i class="fa fa-envelope-o"></i> <span class="nav-label">Dashboard</span></a></li>
         <li class="has-submenu"><a href="#"><i class="fa fa-envelope-o"></i> <span class="nav-label">UI Elements</span></a>
             <ul class="list-unstyled">
                 <li><a href="typography.html">Typography</a></li>
