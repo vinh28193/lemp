@@ -89,4 +89,15 @@ class UserController extends ActiveController
         }
         return $model;
     }
+
+    /**
+     * @param $username
+     * @param $password
+     * @return null|identity
+     */
+    public function findLogin($username, $password) {
+        $class = $this->modelClass;
+        $user = $class::findByLogin($username);
+        return $user->validatePassword($password) ? $user : null;
+    }
 }
