@@ -9,7 +9,7 @@ use yii\widgets\Menu;
  * Class Menu
  * @package backend\widget\AdminMenu
  */
-class Admin extends Menu
+class AdminMenu extends Menu
 {
     /**
      * @var string
@@ -36,7 +36,7 @@ class Admin extends Menu
     /**
      * @var string
      */
-    public $parentRightIcon = '<i class="fa fa-angle-left pull-right"></i>';
+    public $parentRightIcon = '';
 
     /**
      * @inheritdoc

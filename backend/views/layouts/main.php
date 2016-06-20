@@ -6,7 +6,6 @@
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -17,7 +16,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic' rel='stylesheet'>
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <?= Html::tag('title', Html::encode($this->title ? implode(' | ', [Yii::$app->name,$this->title]) : $this->title)) ?>
     <?php $this->head() ?>
 </head>
 <body>
@@ -53,7 +52,6 @@ AppAsset::register($this);
 
     <div class="wraper container-fluid">
         <?= $content ?>
-
     </div>
     <!-- Page Content Ends -->
     <!-- ================== -->

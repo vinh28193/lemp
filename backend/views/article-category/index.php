@@ -20,9 +20,8 @@ $this->registerCss($css);
 ?>
 <div class="panel panel-default" id="article-category-index">
     <div class="panel-heading"> 
-        <span class="panel-title pull-left"><?= Html::encode($this->title) ?></span>
-    
-            <?= Html::a('Create Article Category', ['create'], ['class' => 'btn btn-success pull-right']) ?>
+        <?= Html::tag('span',Html::encode($this->title),['class' => 'panel-title pull-left'])?>
+        <?= Html::a('Create Article Category', ['create'], ['class' => 'btn btn-success pull-right']) ?>
         <div class="clearfix"></div>
     </div> 
     <div class="panel-body"> 

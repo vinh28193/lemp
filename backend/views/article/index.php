@@ -9,16 +9,25 @@ use yii\widgets\Pjax;
 
 $this->title = 'Articles';
 $this->params['breadcrumbs'][] = $this->title;
+
+$css = <<< CSS
+    .panel-title {
+        font-size: 18px;
+        margin-bottom: 0;
+        margin-top: 15px;
+    }
+CSS;
+$this->registerCss($css);
 ?>
-<div class="article-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<div class="panel panel-default" id="article-category-index">
+    <div class="panel-heading"> 
+        <?= Html::tag('span',Html::encode($this->title),['class' => 'panel-title pull-left'])?>
+        <?= Html::a('Create Article Category', ['create'], ['class' => 'btn btn-success pull-right']) ?>
+        <div class="clearfix"></div>
+    </div> 
+    <div class="panel-body"> 
+        <?php Pjax::begin(); ?>   
+        <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -40,7 +49,44 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'published_at',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' =>'{view} {update} {delete}',
+                        'buttons' => [
+                            'view' => function ($url, $model, $key) {
+                                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url,[
+                                    'id' => 'btn-view-'.$key,
+                                    'class' => 'btn btn-icon btn-info m-b-5',
+                                    'title' => $model->title,
+                                    'aria-label' => $model->title,
+                                    'data-pjax' => '0',
+                                ]);
+                            },
+                            'update' => function ($url, $model, $key) {
+                               return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url,[
+                                    'id' => 'btn-view-'.$key,
+                                    'class' => 'btn btn-icon btn-primary m-b-5',
+                                    'title' => $model->title,
+                                    'aria-label' => $model->title,
+                                    'data-pjax' => '0',
+                                ]);
+                            },
+                            'delete' => function ($url, $model, $key) {
+                                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url,[
+                                    'id' => 'btn-view-'.$key,
+                                    'class' => 'btn btn-icon btn-danger m-b-5',
+                                    'title' => $model->title,
+                                    'aria-label' => $model->title,
+                                    'data-confirm' => 'Are you sure you want to delete this item : '. $model->title .' ?',
+                                    'data-method' => 'post',
+                                    'data-pjax' => '0',
+                                ]);
+                            },
+
+                        ]
+                    ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+    <?php Pjax::end(); ?>    
+    </div> 
+</div>>

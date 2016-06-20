@@ -20,7 +20,7 @@ use yii\bootstrap\NavBar;
     </form>
     
     <!-- Left navbar -->
-
+    
     <nav class="navbar-default hidden-xs" role="navigation">
     <?php
         $menuItems = [
