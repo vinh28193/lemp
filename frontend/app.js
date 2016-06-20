@@ -1,4 +1,10 @@
-var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'toaster', 'ngSanitize', 'mgcrea.ngStrap']);
+var app = angular.module('myApp', [
+    'ngRoute', 
+    'ngAnimate', 
+    'toaster', 
+    'ngSanitize', 
+    'mgcrea.ngStrap'
+]);
 
 app.config(['$locationProvider', '$routeProvider', '$httpProvider', function ($locationProvider, $routeProvider, $httpProvider) {
 
@@ -51,7 +57,7 @@ app.service('rest', function ($http, $location, $routeParams) {
 
     return {
 
-        baseUrl: 'http://dev-yii.api:81/',
+        baseUrl: 'http://whisnew-api.dev/',
         path: undefined,
 
         all: function () {

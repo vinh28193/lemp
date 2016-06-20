@@ -46,7 +46,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/article','only' => ['index', 'view', 'options']],
-                'GET v1/article' => 'v1/article/index',
+                'GET v1/article' => 'v1/article',
                 'GET v1/article/<id:\d+>' => 'v1/article/view',
                 'OPTIONS v1/article' => 'v1/article',
                 'OPTIONS v1/article/<id:\d+>' => 'v1/article/view'
