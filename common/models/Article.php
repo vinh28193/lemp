@@ -36,10 +36,9 @@ use yii\behaviors\BlameableBehavior;
  */
 class Article extends ActiveRecord
 {
-
-    const STATUS_ACTIVE = 1;
-    const STATUS_INACTIVE = 0;
-
+    const STATUS_NEW = 0;
+    const STATUS_PUBLISHED = 1;
+    const STATUS_DRAFT = -1;
     /**
     * @var mixed thumbnail the attribute for rendering the file input
     * widget for upload on the form

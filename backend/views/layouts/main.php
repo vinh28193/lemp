@@ -28,10 +28,8 @@ AppAsset::register($this);
 
     <!-- brand -->
     <div class="logo">
-        <a href="index.html" class="logo-expanded">
-            <img src="img/single-logo.png" alt="logo">
-            <span class="nav-label">Velonic</span>
-        </a>
+        <?=Html::a(Html::tag('span',Yii::$app->name,['class' =>'nav-label' ])
+            ,['#'],['class'=>"logo-expanded"])?>
     </div>
     <!-- / brand -->
 
