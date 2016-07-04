@@ -2,10 +2,11 @@
 return [
     'id' => 'whisnew',
     'name' => 'Whisnew',
+    'version' => '1.1',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'sourceLanguage'=>'en',
     'language'=>'en',
-    'timeZone' => 'Asia/Shanghai',
+    'timeZone' => 'UTC',
     'bootstrap' => ['log'],
     'components' => [
         'user' => [
@@ -13,12 +14,36 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+        'request' => [
+            'class' => 'yii\web\Request',
+            'enableCookieValidation' => true,
+            'cookieValidationKey' => 'your-validation-key',
+        ],
+        'response' => [
+            'class' => 'yii\web\Response',
+            'charset' => 'UTF-8',
+        ],
+        'formatter' => [
+        	'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'yyyy-MM-dd',
+            'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'CNY',
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             //'defaultRoles' => ['guest'],
         ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
+        'urlManager' => [
+        	'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
         ],
         'i18n' => [
             'translations' => [
@@ -36,21 +61,6 @@ return [
                     'sourceLanguage' => 'zh-CN',
                     'basePath' => '@app/messages'
                 ],
-            ],
-        ],
-        'formatter' => [
-        	'class' => 'yii\i18n\Formatter',
-            'dateFormat' => 'yyyy-MM-dd',
-            'datetimeFormat' => 'yyyy-MM-dd HH:mm:ss',
-            'decimalSeparator' => '.',
-            'thousandSeparator' => ' ',
-            'currencyCode' => 'CNY',
-        ],
-        'urlManager' => [
-        	'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
             ],
         ],
     ]
