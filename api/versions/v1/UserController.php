@@ -18,22 +18,6 @@ class UserController extends ActiveController
      */
     public $modelClass = 'api\resources\User';
 
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => CompositeAuth::className(),
-            'authMethods' => [
-                [
-                    'class' => HttpBasicAuth::className(),
-                    'auth' => [$this, 'findLogin']
-                ],
-                HttpBearerAuth::className(),
-                QueryParamAuth::className()
-            ]
-        ];
-        return $behaviors;
-    }
     /**
      * @inheritdoc
      */
@@ -79,14 +63,5 @@ class UserController extends ActiveController
         }
         return $model;
     }
-    /**
-     * @param $username
-     * @param $password
-     * @return null|identity
-     */
-    public function findLogin($username, $password) {
-        $class = $this->modelClass;
-        $user = $class::findByLogin($username);
-        return $user->validatePassword($password) ? $user : null;
-    }
+
 }

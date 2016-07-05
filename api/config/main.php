@@ -13,16 +13,16 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
-            'class' => 'api\versions\v1\V1'
-        ]
+            'class' => 'api\versions\v1\Version1',
+        ],
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'api\resources\User',
             'enableAutoLogin' => true,
         ],
         'response' => [
-            'format' => yii\web\Response::FORMAT_JSON,
+            'format' => \yii\web\Response::FORMAT_JSON,
             'charset' => 'UTF-8',
         ],
         'log' => [
@@ -34,7 +34,7 @@ return [
             ],
         ],
         'request' => [
-            'class' => '\yii\web\Request',
+            'class' => 'yii\web\Request',
             'enableCookieValidation' => false,
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
@@ -45,7 +45,11 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                //here
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user','only' => ['index', 'view', 'options']],
+                'GET v1/user' => 'v1/user/index',
+                'GET v1/user/<id:\d+>' => 'v1/user/view',
+                'OPTIONS v1/user' => 'v1/user',
+                'OPTIONS v1/user/<id:\d+>' => 'v1/user/view'
             ],
         ],
     ],

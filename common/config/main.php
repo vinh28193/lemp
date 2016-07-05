@@ -19,8 +19,8 @@ return [
         ],
         'request' => [
             'class' => 'yii\web\Request',
-            'enableCookieValidation' => true,
-            'cookieValidationKey' => 'your-validation-key',
+            'enableCookieValidation' => false,
+            //'cookieValidationKey' => 'your-validation-key',
         ],
         'response' => [
             'class' => 'yii\web\Response',

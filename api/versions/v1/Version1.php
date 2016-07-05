@@ -5,7 +5,6 @@ namespace api\versions\v1;
 use Yii;
 use yii\base\Module;
 use yii\rest\Controller;
-use yii\rest\UrlRule;
 use yii\web\Request;
 use yii\web\Response;
 use yii\heples\Url;
@@ -15,41 +14,27 @@ use yii\filters\Cors;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
-use yii\filters\auth\QueryParamAuth
+use yii\filters\auth\QueryParamAuth;
 
-class V1 extends Module
+class Version1 extends Module
 {
     public $controllerNamespace = 'api\versions\v1';
 
-    public $urlRuleClass = UrlRule::className();
+    public $urlRuleClass = 'yii\rest\UrlRule';
 
     public function behavior(){
     	$behaviors = panent::behavior();
     	$behaviors = ArrayHelper::merger([
-    		'authenticator' => QueryParamAuth::className(),
-    		'corsFilter' => Cors::className(),
+    		'authenticator' => 'yii\filters\auth\QueryParamAuth',
+    		'corsFilter' => 'yii\filters\Cors',
     		'contentNegotiator'=> ['formats' => ['text/html' => Response::FORMAT_HTML]]
     	],$behaviors);
-    	return $behaviors;
+        return $behaviors;
     }
 
     public function init()
     {
         parent::init();
-        $this->registerUrl();
     }
 
-    public function registerUrl(){
-        $request = Yii::$app->getRequest();
-        $urlManager Yii::$app->getUrlManager();
-        if(!$request instanceof Request){
-
-        }
-        $method = $request->getMethod();
-
-        $createRule = [
-            'class' => $this->urlRuleClass,
-        ];
-
-    }
 }

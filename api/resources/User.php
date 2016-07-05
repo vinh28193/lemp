@@ -44,7 +44,7 @@ class User extends \common\models\User implements RateLimitInterface
     {
         return [
             'userProfile'
-        ]
+        ];
     }
 
     /**
