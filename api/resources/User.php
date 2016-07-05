@@ -8,11 +8,12 @@ use yii\web\Linkable;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\filters\RateLimitInterface;
+
 /**
  * User is the resources that may be implemented by an identity object to enforce rate limiting.
  *
  */
-class User extends \common\models\User implements RateLimitInterface
+class User extends \common\models\User implements RateLimitInterface,Linkable
 {
     /**
      * @var int
@@ -29,9 +30,14 @@ class User extends \common\models\User implements RateLimitInterface
         return [
             'id',
             'username',
+            'access_token',
             'email',
-            'created_at',
-            'updated_at'
+            'created_at' => function(){
+                return Yii::$app->formatter->asDatetime($this->created_at);
+            },
+            'updated_at' => function(){
+                return Yii::$app->formatter->asDatetime($this->updated_at);
+            },
         ];
     }
 
@@ -78,5 +84,21 @@ class User extends \common\models\User implements RateLimitInterface
      */
     public function saveAllowance($request, $action, $allowance, $timestamp){
 
+    }
+
+    /**
+     * Returns a list of links.
+     *
+     * Each link is either a URI or a [[Link]] object. The return value of this method should
+     * be an array whose keys are the relation names and values the corresponding links.
+     *
+     * If a relation name corresponds to multiple links, use an array to represent them.
+     * @return array the links
+     */
+    public function getLinks()
+    {
+        return [
+            Link::REL_SELF => Url::to(['user/view', 'id' => $this->id], true),
+        ];
     }
 }

@@ -4,8 +4,8 @@ namespace api\versions\v1;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
-use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -18,6 +18,14 @@ class UserController extends ActiveController
      */
     public $modelClass = 'api\resources\User';
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors(){
+        $behaviors = parent::behaviors();
+        //code authenticator here
+        return $behaviors;
+    }
     /**
      * @inheritdoc
      */
@@ -45,6 +53,7 @@ class UserController extends ActiveController
     public function prepareDataProvider()
     {
         $class = $this->modelClass;
+        var_dump($this->behaviors());exit();
         return new ActiveDataProvider([
             'query' => $class::find()
         ]);
