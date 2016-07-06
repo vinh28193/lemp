@@ -30,8 +30,10 @@ class User extends \common\models\User implements RateLimitInterface,Linkable
         return [
             'id',
             'username',
-            'access_token',
             'email',
+            'status' => function (){ 
+                return self::getStatusLabel(true);
+            },
             'created_at' => function(){
                 return Yii::$app->formatter->asDatetime($this->created_at);
             },
@@ -49,7 +51,8 @@ class User extends \common\models\User implements RateLimitInterface,Linkable
     public function extraFields()
     {
         return [
-            'userProfile'
+            'publicIdentity',
+            'userProfile',
         ];
     }
 
@@ -99,6 +102,7 @@ class User extends \common\models\User implements RateLimitInterface,Linkable
     {
         return [
             Link::REL_SELF => Url::to(['user/view', 'id' => $this->id], true),
+            'avatar' => $this->userProfile->getAvatar(Yii::getAlias('@web/storages/user/default.jpg')),
         ];
     }
 }

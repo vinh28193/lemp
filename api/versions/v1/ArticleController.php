@@ -11,35 +11,13 @@ use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\QueryParamAuth;
 
-class UserController extends ActiveController
+class ArticleController extends ActiveController
 {
     /**
      * @var string
      */
-    public $modelClass = 'api\resources\User';
+    public $modelClass = 'api\resources\Article';
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors(){
-        $behaviors = parent::behaviors();
-        if(isset($behaviors['authenticator'])){
-            unset($behaviors['authenticator']);
-        };
-        $behaviors['authenticator'] = [
-            'class' => CompositeAuth::className(),
-            'except' => ['index','view'],
-            'authMethods' => [
-                [
-                    'class' => HttpBasicAuth::className(),
-                    'auth' => [$this,'findLogin']
-                ],
-                HttpBearerAuth::className(),
-                QueryParamAuth::className()
-            ]
-        ];
-        return $behaviors;
-    }
     /**
      * @inheritdoc
      */
@@ -84,17 +62,6 @@ class UserController extends ActiveController
             throw new HttpException(404);
         }
         return $model;
-    }
-
-    /**
-     * @param $username
-     * @return null|static
-     * @throws NotFoundHttpException
-     */
-    public function findLogin($username, $password) {
-        $class = $this->modelClass;
-        $user = $class::findByLogin($username);
-        return $user->validatePassword($password) ? $user : null;
     }
 
 }

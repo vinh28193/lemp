@@ -19,7 +19,8 @@ return [
     'components' => [
         'user' => [
             'identityClass' => 'api\resources\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'enableSession' => false,
         ],
         'response' => [
             'format' => \yii\web\Response::FORMAT_JSON,
@@ -45,10 +46,11 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'v1/user','only' => ['index', 'view', 'options']],
+                ['class' => 'yii\rest\UrlRule', 'controller' =>['v1/user','v1/article'],'only' => ['index', 'view', 'options']],
                 'GET v1/user' => 'v1/user/index',
+                'GET v1/article' => 'v1/article/index',
                 'GET v1/user/<id:\d+>' => 'v1/user/view',
-                'OPTIONS v1/user' => 'v1/user',
+                'OPTIONS v1/user' => 'v1/user/index',
                 'OPTIONS v1/user/<id:\d+>' => 'v1/user/view'
             ],
         ],

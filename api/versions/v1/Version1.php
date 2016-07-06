@@ -25,7 +25,7 @@ class Version1 extends Module
     public function behaviors(){
     	$behaviors = parent::behaviors();
     	$behaviors = ArrayHelper::merge([
-    		'authenticator' => [
+    		/*'authenticator' => [
                 'class' => CompositeAuth::className(),
                 'except' => ['options'],
                 'authMethods' => [
@@ -33,14 +33,14 @@ class Version1 extends Module
                     'httpBearer' => ['class' => HttpBearerAuth::className()],
                     'queryParam' => ['class' => QueryParamAuth::className()],
                 ],
-            ],
+            ],*/
     		'corsFilter' => [
                 // Cors filter implements [Cross Origin Resource Sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
                 'class' => Cors::className(),
                 // The current requested
-                'request' => Request::className(),
+                //'request' => Request::className(),
                 // The response to be sent
-                'response' => Response::className(),
+                //'response' => Response::className(),
                 'actions' => [
                     'index',    // List resources page by page;
                     'view',     // Return the details of a specified resource;
@@ -54,8 +54,8 @@ class Version1 extends Module
                     'Origin' => ['*'],
                     // Allow  'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD' and 'OPTIONS' methods
                     'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'], 
-                    // Allow only headers 'X-Wsse'
-                    'Access-Control-Request-Headers' => ['X-Wsse'],
+                    // Allow only headers '*'
+                    'Access-Control-Request-Headers' => ['*'],
                     // Allow Credentials
                     'Access-Control-Allow-Credentials' => null,
                     // Allow OPTIONS caching '3600 sec'

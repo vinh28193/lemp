@@ -258,7 +258,7 @@ class User extends ActiveRecord implements IdentityInterface
                 self::STATUS_INACTIVE => 'Inactive',
                 self::STATUS_ACTIVE => 'Active'
             ];
-        return !$status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
+        return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
     }
 
     /**
