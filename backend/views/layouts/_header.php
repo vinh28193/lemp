@@ -23,29 +23,9 @@ use yii\bootstrap\NavBar;
     
     <nav class="navbar-default hidden-xs" role="navigation">
     <?php
-        $menuItems = [
-            [
-                'label' => 'About', 
-                'url' => ['/site/about']
-            ],
-            [
-                'label' => 'Contact', 
-                'url' => ['/site/contact'],
-                'items' => [
-                  ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
-                  '<li class="divider"></li>',
-                  '<li class="dropdown-header">Dropdown Header</li>',
-                  ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
-                ],
-            ],
-            [
-                'label' => 'About', 
-                'url' => ['/site/about']
-            ],
-        ];
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav'],
-            'items' => $menuItems,
+            'items' => Yii::$app->params['menuItems'],
         ]);
    
     ?>

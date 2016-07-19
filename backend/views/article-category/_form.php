@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use kartik\widgets\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ArticleCategory */
@@ -17,8 +18,13 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     </div>
     <div class="form-group">
-        <?= $form->field($model, 'parent_id')->widget(\kartik\widgets\Select2::className(),[
-                'data' => ArrayHelper::map($articleCategories,'id','title')
+        <?= $form->field($model, 'parent_id')->widget(Select2::className(),[
+                'data' => ArrayHelper::map($articleCategories,'id','title'),
+                'theme' => Select2::THEME_BOOTSTRAP,
+                'options' => ['placeholder' => 'Root'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
             ]) ?>
     </div>
     <div class="form-group">

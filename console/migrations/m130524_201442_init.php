@@ -1,9 +1,7 @@
 <?php
-
 use yii\db\Schema;
 use yii\db\Migration;
 use yii\db\Expression;
-
 class m130524_201442_init extends Migration
 {
     public function up()

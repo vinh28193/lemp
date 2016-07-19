@@ -1,6 +1,5 @@
 <?php
 namespace common\models;
-
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -32,11 +31,9 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
-
     const ROLE_USER = 'user';
     const ROLE_MANAGER = 'manager';
     const ROLE_ADMINISTRATOR = 'administrator';
-
     const EVENT_AFTER_SIGNUP = 'afterSignup';
     const EVENT_AFTER_LOGIN = 'afterLogin';
     /**
@@ -122,7 +119,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
-
     /**
      * @inheritdoc
      */
@@ -130,7 +126,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->auth_key;
     }
-
     /**
      * @inheritdoc
      */
@@ -138,7 +133,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-
     /**
      * Finds user by username
      *
@@ -185,7 +179,6 @@ class User extends ActiveRecord implements IdentityInterface
             self::getColumn('status',self::tableName()) => self::STATUS_ACTIVE,
         ]);
     }
-
     /**
      * Finds out if password reset token is valid
      *
@@ -201,7 +194,6 @@ class User extends ActiveRecord implements IdentityInterface
         $expire = Yii::$app->params['passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
-
     /**
      * Validates password
      *
@@ -212,7 +204,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
-
     /**
      * Generates password hash from password and sets it to the model
      *
@@ -222,7 +213,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
-
     /**
      * Generates "remember me" authentication key
      */
@@ -230,7 +220,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
-
     /**
      * Generates new password reset token
      */
@@ -238,7 +227,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
-
     /**
      * Removes password reset token
      */
@@ -246,7 +234,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-
     /**
      *  get status label
      *  @param bool $status default false if not set.
@@ -260,7 +247,6 @@ class User extends ActiveRecord implements IdentityInterface
             ];
         return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
     }
-
     /**
      *  get full name column with table name or not if not set tableName
      *  @param string $attribute
@@ -271,7 +257,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return is_null($tableName) ? $attribute : $tableName. '.' .$attribute;
     }
-
     /**
      *  Quote Tabel Name will be replace pattern table prefix in tableName when use table name with prefix
      *  @param string $pattern if not set default '/{|{{|%|}|}}/'
@@ -281,7 +266,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
     }
-
     /**
      *  get public identity when user logined
      *  @return string 
