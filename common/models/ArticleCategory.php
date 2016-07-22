@@ -138,7 +138,7 @@ class ArticleCategory extends ActiveRecord
      */
     public static function getColumn($attribute,$tableName = null)
     {
-        return is_null($tableName) ? $attribute : $tableName. '.' .$attribute;
+        return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
     }
     /**
      *  Quote Tabel Name will be replace pattern table prefix in tableName when use table name with prefix
