@@ -17,15 +17,6 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'request' => [
-            'class' => 'yii\web\Request',
-            'enableCookieValidation' => false,
-            //'cookieValidationKey' => 'your-validation-key',
-        ],
-        'response' => [
-            'class' => 'yii\web\Response',
-            'charset' => 'UTF-8',
-        ],
         'formatter' => [
         	'class' => 'yii\i18n\Formatter',
             'dateFormat' => 'yyyy-MM-dd',
@@ -46,6 +37,7 @@ return [
             ],
         ],
         'i18n' => [
+            'class' => 'yii\i18n\I18N',
             'translations' => [
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
