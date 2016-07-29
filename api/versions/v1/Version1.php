@@ -41,14 +41,14 @@ class Version1 extends Module
                 //'request' => Request::className(),
                 // The response to be sent
                 //'response' => Response::className(),
-                'actions' => [
-                    'index',    // List resources page by page;
-                    'view',     // Return the details of a specified resource;
-                    'create',   // Create a new resource;
-                    'update',   // Update an existing resource;
-                    'delete',   // Delete the specified resource;
-                    'options',  // Return the supported HTTP methods.
-                ],
+                // 'actions' => [
+                //     'index',    // List resources page by page;
+                //     'view',     // Return the details of a specified resource;
+                //     'create',   // Create a new resource;
+                //     'update',   // Update an existing resource;
+                //     'delete',   // Delete the specified resource;
+                //     'options',  // Return the supported HTTP methods.
+                // ],
                 'cors' => [
                     // Restrict access to All Origin 
                     'Origin' => ['*'],

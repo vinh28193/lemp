@@ -141,11 +141,11 @@ class ArticleCategory extends ActiveRecord
         return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
     }
     /**
-     *  Quote Tabel Name will be replace pattern table prefix in tableName when use table name with prefix
+     *  Quote Table Name will be replace pattern table prefix in tableName when use table name with prefix
      *  @param string $pattern if not set default '/{|{{|%|}|}}/'
      *  @return string 
      */
-    public static function getQuoteTabelName($pattern = '/{|{{|%|}|}}/')
+    public static function getQuoteTableName($pattern = '/{|{{|%|}|}}/')
     {
         return preg_match($pattern,self::tableName()) ? preg_replace($pattern,'',self::tableName()) : self::tableName() ;
     }

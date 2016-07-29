@@ -6,7 +6,6 @@ $params = array_merge(
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
-$urlManager = ;
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),    
@@ -35,13 +34,12 @@ return [
             ],
         ],
         'request' => [
-            'class' => 'yii\web\Request',
             'enableCookieValidation' => false,
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
         ],
-        'urlManager' => require(__DIR__ . '/../../common/config/urlManager.php'),
+        'urlManager' => require(__DIR__ . '/urlManager.php'),
     ],
     'params' => $params,
 ];

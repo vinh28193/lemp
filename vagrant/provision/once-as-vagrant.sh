@@ -12,13 +12,19 @@ function info {
   echo " "
 }
 
+function ensure {
+  echo " "
+  echo "<-- $1"
+  echo " "
+}
+
 #== Provision script ==
 
 info "Provision-script user: `whoami`"
 
 info "Configure composer"
 composer config --global github-oauth.github.com ${github_token}
-echo "Done!"
+ensure "Done!"
 
 info "Install plugins for composer"
 composer global require "fxp/composer-asset-plugin:~1.1.1" --no-progress
@@ -26,19 +32,25 @@ composer global require "fxp/composer-asset-plugin:~1.1.1" --no-progress
 info "Install codeception"
 composer global require "codeception/codeception=2.0.*" "codeception/specify=*" "codeception/verify=*" --no-progress
 echo 'export PATH=/home/vagrant/.config/composer/vendor/bin:$PATH' | tee -a /home/vagrant/.profile
+ensure "Done!"
 
 info "Install project dependencies"
 cd /app
 composer --no-progress --prefer-dist install
+ensure "Done!"
 
 info "Init project"
-./init --env=Development --overwrite=y
+php ./init --env=Development --overwrite=y
+ensure "Done!"
 
 info "Apply migrations"
-./yii migrate <<< "yes"
+php ./yii migrate <<< "yes"
+ensure "Done!"
 
 info "Create bash-alias 'app' for vagrant user"
 echo 'alias app="cd /app"' | tee /home/vagrant/.bash_aliases
+ensure "Done!"
 
 info "Enabling colorized prompt for guest console"
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
+ensure "Done!"

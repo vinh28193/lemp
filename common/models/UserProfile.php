@@ -25,6 +25,7 @@ class UserProfile extends ActiveRecord
 {
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
+    
     /**
      * @var string $avatar
      */
@@ -85,6 +86,7 @@ class UserProfile extends ActiveRecord
     {
         return ($this->firstname || $this->lastname) ? implode(' ', [$this->firstname, $this->lastname]) : null;
     }
+
     /**
     * get avatar of user
     * @return string
@@ -92,6 +94,40 @@ class UserProfile extends ActiveRecord
     public function getAvatar($default = null)
     {
         return $this->avatar_path ? Yii::getAlias(implode('/',[$this->avatar_base_url, $this->avatar_path])) : $default;
+    }
+
+    /**
+     *  get sender label
+     *  @param bool $sender default false if not set.
+     *  @return string|array
+     */
+    public function getGenderLabel($gender = false)
+    {
+            $genderLabel = [
+                self::GENDER_MALE => 'Male',
+                self::GENDER_FEMALE => 'Female',
+            ];
+        return $gender ? ArrayHelper::getValue($genderLabel,$this->gender) : $genderLabel;
+    }
+    
+    /**
+     *  get full name column with table name or not if not set tableName
+     *  @param string $attribute
+     *  @param string $tableName 
+     *  @return string
+     */
+    public static function getColumn($attribute,$tableName = null)
+    {
+        return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
+    }
+    /**
+     *  Quote Table Name will be replace pattern table prefix in tableName when use table name with prefix
+     *  @param string $pattern if not set default '/{|{{|%|}|}}/'
+     *  @return string 
+     */
+    public static function getQuoteTableName($string = '',$pattern = '/{|{{|%|}|}}/')
+    {
+        return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
     }
     /**
     * Process upload of thumbnail
@@ -113,4 +149,5 @@ class UserProfile extends ActiveRecord
         parent::afterSave($insert, $changedAttributes);
         Yii::$app->session->setFlash('forceUpdateLocale');
     }
+
 }

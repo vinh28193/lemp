@@ -3,9 +3,13 @@
 
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
-use common\models\Article;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\FileHelper;
+use yii\helpers\ArrayHelper;
+use common\models\Article;
+use common\models\ArticleCategory;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,9 +29,11 @@ $this->registerCss($css);
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
-        'headerRowOptions'=>['class'=>'kartik-sheet-style'],
-        'filterRowOptions'=>['class'=>'kartik-sheet-style'],
+        'containerOptions'=>['class'=>'dataTables_wrapper form-inline dt-bootstrap no-footer'], // only set when $responsive = false
+        'tableOptions' =>['class'=>'dataTable no-footer'],
+        'headerRowOptions'=>['class'=>'sticky-table-header fixed-solution'],
+        'filterRowOptions'=>['class'=>'dataTables_filter'],
+        'perfectScrollbar' => true,
         'panel' => [
             'heading'=> Html::encode($this->title),
             'type'=> GridView::TYPE_DEFAULT,
@@ -77,7 +83,7 @@ $this->registerCss($css);
             GridView::HTML => false,
             GridView::CSV => [
                 'label' => Yii::t('kvgrid', 'CSV'),
-                'icon' => 'file-code-o', 
+                'icon' => 'floppy-save', 
                 'iconOptions' => ['class' => 'text-primary'],
                 'showHeader' => true,
                 'showPageSummary' => true,
@@ -126,8 +132,53 @@ $this->registerCss($css);
                 'format' => 'raw',
                 'hAlign' => GridView::ALIGN_CENTER ,
                 'vAlign' => GridView::ALIGN_MIDDLE,
-                'noWrap' => true,
-                'pageSummary' => false
+                'noWrap' => false,
+                'pageSummary' => false,
+                // 'filterType'=>GridView::FILTER_SELECT2,
+                // 'filter'=> ArrayHelper::map(Article::find()->orderBy('title')->asArray()->all(), 'title', 'title'), 
+                // 'filterWidgetOptions'=>[
+                //     'pluginOptions'=>['allowClear'=>true],
+                // ],
+                // 'filterInputOptions'=>['placeholder'=>'Any title'],
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'short_description',
+                'format' => 'raw',
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                // 'filterType'=>GridView::FILTER_SELECT2,
+                // 'filter'=> ArrayHelper::map(Article::find()->orderBy('short_description')->asArray()->all(), 'short_description', 'short_description'), 
+                // 'filterWidgetOptions'=>[
+                //     'pluginOptions'=>['allowClear'=>true],
+                // ],
+                // 'filterInputOptions'=>['placeholder'=>'Any author'],
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'description',
+                'format' => 'raw',
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                // 'filterType'=>GridView::FILTER_SELECT2,
+                // 'filter'=> ArrayHelper::map(Article::find()->orderBy('description')->asArray()->all(), 'description', 'description'), 
+                // 'filterWidgetOptions'=>[
+                //     'pluginOptions'=>['allowClear'=>true],
+                // ],
+                // 'filterInputOptions'=>['placeholder'=>'Any author'],
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'body',
+                'format' => 'ntext',
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
                 // 'filterType'=>GridView::FILTER_SELECT2,
                 // 'filter'=> ArrayHelper::map(Author::find()->orderBy('name')->asArray()->all(), 'id', 'name'), 
                 // 'filterWidgetOptions'=>[
@@ -137,27 +188,72 @@ $this->registerCss($css);
             ],
             [
                 'class' => 'kartik\grid\DataColumn',
-                'attribute' => 'short_description',
+                'attribute' => 'category_id',
                 'format' => 'raw',
-                'hAlign' => 'center',
-                'vAlign' => 'middle',
-                'noWrap' => true,
-                'pageSummary' => false
+                'value'=>function ($model, $key, $index, $widget) { 
+                    return $model->category->title ;  
+                },
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
                 // 'filterType'=>GridView::FILTER_SELECT2,
-                // 'filter'=> ArrayHelper::map(Author::find()->orderBy('name')->asArray()->all(), 'id', 'name'), 
+                // 'filter'=> ArrayHelper::map(ArticleCategory::find()->asArray()->all(), 'id', 'title'), 
+                // 'filterWidgetOptions'=>[
+                //     'pluginOptions'=>['allowClear'=>true],
+                // ],
+                // 'filterInputOptions'=>['placeholder'=>'Any Category'],
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'view',
+                'format' => 'raw',
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                // 'filterType'=>GridView::FILTER_SELECT2,
+                // 'filter'=> ArrayHelper::map(Article::find()->orderBy('name')->asArray()->all(), 'id', 'name'), 
                 // 'filterWidgetOptions'=>[
                 //     'pluginOptions'=>['allowClear'=>true],
                 // ],
                 // 'filterInputOptions'=>['placeholder'=>'Any author'],
             ],
-            'description:ntext',
-            'body:ntext',
-            'category_id',
-            'view',
-            'status',
-            'published_at:dateTime',
-            'updated_at:dateTime',
-
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'status',
+                'format' => 'raw',
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                'filterType'=>GridView::FILTER_SELECT2,
+                'filter'=> ['STATUS_NEW','STATUS_PUBLISHED','STATUS_DRAFT'], 
+                'filterWidgetOptions'=>[
+                    'pluginOptions'=>['allowClear'=>true],
+                ],
+                'filterInputOptions'=>['placeholder'=>'Any author'],
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'published_at',
+                'format' =>  ['date', 'php:Y-m-d H:i:s'],
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                'filterType'=>GridView::FILTER_DATE,
+            ],
+            [
+                'class' => 'kartik\grid\DataColumn',
+                'attribute' => 'updated_at',
+                'format' =>  ['date', 'php:Y-m-d H:i:s'],
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => false,
+                'pageSummary' => false,
+                'filterType'=>GridView::FILTER_DATE,
+            ],
             [
                 'class' => 'kartik\grid\ActionColumn',
                 'template' =>'{view} {update} {delete}',
@@ -165,6 +261,9 @@ $this->registerCss($css);
                 'updateOptions'=>['class' => 'btn btn-icon btn-primary m-b-5'],
                 'deleteOptions'=>['class' => 'btn btn-icon btn-danger m-b-5'],
                 'headerOptions'=>['class'=>'kartik-sheet-style'],
+                'hAlign' => GridView::ALIGN_CENTER ,
+                'vAlign' => GridView::ALIGN_MIDDLE,
+                'noWrap' => true,
             ],
         ],
     ]); ?>

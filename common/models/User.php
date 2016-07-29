@@ -234,6 +234,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
     /**
      *  get status label
      *  @param bool $status default false if not set.
@@ -258,11 +259,11 @@ class User extends ActiveRecord implements IdentityInterface
         return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
     }
     /**
-     *  Quote Tabel Name will be replace pattern table prefix in tableName when use table name with prefix
+     *  Quote Table Name will be replace pattern table prefix in tableName when use table name with prefix
      *  @param string $pattern if not set default '/{|{{|%|}|}}/'
      *  @return string 
      */
-    public static function getQuoteTabelName($string = '',$pattern = '/{|{{|%|}|}}/')
+    public static function getQuoteTableName($string = '',$pattern = '/{|{{|%|}|}}/')
     {
         return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
     }

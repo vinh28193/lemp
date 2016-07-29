@@ -19,7 +19,7 @@ This way is the easiest but long (~20 min).
 5. Prepare project:
    
    ```bash
-   git clone https://github.com/vinh28193/whisnew
+   git clone https://github.com/vinh28193/whisnew.git
    cd whisnew/vagrant/config
    cp vagrant-local.example.yml vagrant-local.yml
    ```

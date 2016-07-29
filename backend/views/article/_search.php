@@ -15,35 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'slug') ?>
-
     <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'short_description') ?>
-
-    <?= $form->field($model, 'description') ?>
-
-    <?php // echo $form->field($model, 'body') ?>
-
-    <?php // echo $form->field($model, 'category_id') ?>
-
-    <?php // echo $form->field($model, 'thumbnail_base_url') ?>
-
-    <?php // echo $form->field($model, 'thumbnail_path') ?>
-
-    <?php // echo $form->field($model, 'author_id') ?>
-
-    <?php // echo $form->field($model, 'updater_id') ?>
-
-    <?php // echo $form->field($model, 'view') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'published_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

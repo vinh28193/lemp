@@ -38,7 +38,7 @@ class Article extends ActiveRecord
 {
     const STATUS_NEW = 0;
     const STATUS_PUBLISHED = 1;
-    const STATUS_DRAFT = -1;
+    const STATUS_DRAFT = 2;
     /**
     * @var mixed thumbnail the attribute for rendering the file input
     * widget for upload on the form
@@ -161,4 +161,38 @@ class Article extends ActiveRecord
         return $this->hasMany(ArticleAttachment::className(), ['article_id' => 'id']);
     }
 
+     /**
+     *  get status label
+     *  @param bool $status default false if not set.
+     *  @return string|array
+     */
+    public function getStatusLabel($status = false)
+    {
+            $statusLabel = [
+                self::STATUS_NEW => 'New',
+                self::STATUS_PUBLISHED => 'Published',
+                self::STATUS_DRAFT => 'draft'
+            ];
+        return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
+    }
+    
+    /**
+     *  get full name column with table name or not if not set tableName
+     *  @param string $attribute
+     *  @param string $tableName 
+     *  @return string
+     */
+    public static function getColumn($attribute,$tableName = null)
+    {
+        return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
+    }
+    /**
+     *  Quote Table Name will be replace pattern table prefix in tableName when use table name with prefix
+     *  @param string $pattern if not set default '/{|{{|%|}|}}/'
+     *  @return string 
+     */
+    public static function getQuoteTableName($string = '',$pattern = '/{|{{|%|}|}}/')
+    {
+        return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
+    }
 }
