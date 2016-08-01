@@ -12,14 +12,6 @@ use common\models\ArticleCategory;
 $this->title = 'Articles';
 $this->params['breadcrumbs'][] = $this->title;
 
-$css = <<< CSS
-    .panel-title {
-        font-size: 18px;
-        margin-bottom: 0;
-        margin-top: 15px;
-    }
-CSS;
-$this->registerCss($css);
 $columns = [
     [
         'class' => 'kartik\grid\CheckboxColumn'
@@ -168,9 +160,8 @@ $columns = [
     ],
 
 ];
-?>
-    <?= Grid::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => $columns,
-    ]); ?>
+echo  Grid::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => $columns,
+]); ?>

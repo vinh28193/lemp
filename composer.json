@@ -31,6 +31,7 @@
         "bower-asset/flot": "^0.8",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-detail-view": "*",
         "kartik-v/yii2-mpdf": "*",
         "pendalf89/yii2-filemanager": "*"
     },

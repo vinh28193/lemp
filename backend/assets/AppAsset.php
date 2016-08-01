@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'backend\assets\FontAwesomeAsset',
-        'backend\assets\Html5ShivAsset'
+        'backend\assets\Html5ShivAsset',
+        'backend\assets\OwlCarouselAsset'
     ];
 }

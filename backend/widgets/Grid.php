@@ -13,10 +13,13 @@ use kartik\base\Widget;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Json;
 use yii\helpers\FileHelper;
 use yii\helpers\ArrayHelper;
 
+use yii\web\View;
 use yii\web\JsExpression;
+
 /**
  * Enhances the Yii GridView widget with various options to include Bootstrap specific styling enhancements. Also
  * allows to simply disable Bootstrap styling by setting `bootstrap` to false. Includes an extended data column for
@@ -29,10 +32,10 @@ use yii\web\JsExpression;
 class Grid extends GridView
 {
 
-    const COLUM_CHECKBOK = '\kartik\grid\CheckboxColumn';
-    const COLUM_SERIAL = 'kartik\grid\SerialColumn';
-    const COLUM_DATA = 'kartik\grid\DataColumn';
-    const COLUM_ACTION = 'kartik\grid\ActionColumn';
+    const COLUMN_CHECKBOK = '\kartik\grid\CheckboxColumn';
+    const COLUMN_SERIAL = 'kartik\grid\SerialColumn';
+    const COLUMN_DATA = 'kartik\grid\DataColumn';
+    const COLUMN_ACTION = 'kartik\grid\ActionColumn';
 
     public $title;
     public $pjaxId = 'pjax-';
@@ -44,13 +47,12 @@ class Grid extends GridView
 
         $this->title = $this->getView()->title;
         $this->registerConfig();
-        $this->registerColumn();
+        $this->parseColumn();
     }
     public function run(){
         parent::run();
     }
     protected function registerConfig(){
-        //Yii::configure($this,[])
         $this->perfectScrollbar = true;
         $this->panel = [
             'heading'=> Html::encode($this->title),
@@ -80,8 +82,22 @@ class Grid extends GridView
             '{export}',
             '{toggleData}'
         ];
+        
     }
-    protected function registerColumn(){
+    protected function parseColumn(){
+        $columnList = [];
+        $columnOptions = [
+            'format' => 'raw',
+            'hAlign' => Grid::ALIGN_CENTER ,
+            'vAlign' => Grid::ALIGN_MIDDLE,
+            'noWrap' => false,
+            'pageSummary' => false,
+        ];
+        $columnHeader = [
+            ['class' => self::COLUMN_SERIAL],
+            ['class' => self::COLUMN_CHECKBOK]
+        ];
+        $columnList = array_merge($columnHeader,$columnList);
         return $this->columns;
     }
     protected function initBootstrapStyle(){
@@ -135,8 +151,8 @@ class Grid extends GridView
         }
         $this->exportConversions = ArrayHelper::merge(
             [
-                ['from' => self::ICON_ACTIVE, 'to' => Yii::t('kvgrid', 'Active')],
-                ['from' => self::ICON_INACTIVE, 'to' => Yii::t('kvgrid', 'Inactive')]
+                ['from' => self::ICON_ACTIVE, 'to' => 'Active'],
+                ['from' => self::ICON_INACTIVE, 'to' => 'Inactive']
             ],
             $this->exportConversions
         );
@@ -342,4 +358,5 @@ class Grid extends GridView
         ];
         $this->exportConfig = self::parseExportConfig($this->exportConfig, $defaultExportConfig);
     }
+    
 }

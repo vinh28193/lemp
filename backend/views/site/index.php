@@ -3,24 +3,11 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
-use swal\Swal;
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>
-
-        <?php 
-      /*  echo Swal::widget([
-            'title' => 'Get started with Yii',
-            'text' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit,',
-            'clientOptions' => [
-                'confirmButtonText' => 'Button',
-                'cancelButtonText' => 'exit()'
-            ],
-            'type' => 'pop'
-        ])*/
-    ?>
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 

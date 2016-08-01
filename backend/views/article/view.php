@@ -1,8 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
-
+use backend\widgets\Detail;
 /* @var $this yii\web\View */
 /* @var $model common\models\Article */
 
@@ -25,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?= Detail::widget([
         'model' => $model,
         'attributes' => [
             'id',
