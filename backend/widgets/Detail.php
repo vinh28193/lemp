@@ -33,11 +33,13 @@ class Detail extends DetailView
     protected function initWidget()
     {
         parent::initWidget();
-        $this->panel = [
-            'heading'=> 'dfdsf',
+        $title = $this->getView()->title;
+        $this->panel = false;
+        /*$this->panel = [
+            'heading'=> $title,
             'type'=> self::TYPE_DEFAULT,
             'footer'=>false
-        ];
+        ];*/
     }
 
     protected function runWidget()
@@ -98,7 +100,7 @@ class Detail extends DetailView
             return false;
         }
         $options = ArrayHelper::getValue($this->panel, $type . 'Options', []);
-        $tag = ArrayHelper::remove($options, 'tag', ($type === 'heading' ? 'h3' : 'h4'));
+        $tag = ArrayHelper::remove($options, 'tag', ($type === 'heading' ? 'h1' : 'h4'));
         $template = ArrayHelper::remove($options, 'template', ($type === 'heading' ? '{buttons}{title}' : '{title}'));
         Html::addCssClass($options, 'panel-title');
         $title = Html::tag($tag, $title, $options);
@@ -140,15 +142,15 @@ class Detail extends DetailView
         }
         switch ($type) {
             case 'view':
-                return $this->getDefaultButton('view', 'eye-open', Yii::t('kvdetail', 'View'));
+                return $this->getDefaultButton('view', 'eye-open', 'View');
             case 'update':
-                return $this->getDefaultButton('update', 'pencil', Yii::t('kvdetail', 'Update'));
+                return $this->getDefaultButton('update', 'pencil', 'Update');
             case 'delete':
-                return $this->getDefaultButton('delete', 'trash', Yii::t('kvdetail', 'Delete'));
+                return $this->getDefaultButton('delete', 'trash', 'Delete');
             case 'save':
-                return $this->getDefaultButton('save', 'floppy-disk', Yii::t('kvdetail', 'Save'));
+                return $this->getDefaultButton('save', 'floppy-disk',  'Save');
             case 'reset':
-                return $this->getDefaultButton('reset', 'ban-circle', Yii::t('kvdetail', 'Cancel Changes'));
+                return $this->getDefaultButton('reset', 'ban-circle',  'Cancel Changes');
             default:
                 return '';
         }
@@ -159,24 +161,35 @@ class Detail extends DetailView
         $options = $this->$buttonOptions;
         $label = ArrayHelper::remove($options, 'label', "<i class='glyphicon glyphicon-{$icon}'></i>");
         if (empty($options['class'])) {
-            $options['class'] = 'kv-action-btn';
+            $options['class'] = 'btn';
         }
-        Html::addCssClass($options, 'kv-btn-' . $type);
         $options = ArrayHelper::merge(['title' => $title], $options);
         if ($this->tooltips) {
             $options['data-toggle'] = 'tooltip';
             $options['data-container'] = 'body';
         }
+        $options['type'] = 'button';
         switch ($type) {
+            case 'view':
+                Html::addCssClass($options, 'btn-default');
+                break;
+            case 'update':
+                Html::addCssClass($options, 'btn btn-primary');  
+                break;
             case 'reset':
+                Html::addCssClass($options, 'btn-default');
                 return Html::resetButton($label, $options);
             case 'save':
                 return Html::submitButton($label, $options);
             case 'delete':
+                Html::addCssClass($options, 'btn btn-danger');
                 $url = ArrayHelper::remove($options, 'url', '#');
                 return Html::a($label, $url, $options);
+            default:
+                return Html::button($label, $options);
+                break;
         }
-        $options['type'] = 'button';
+        
         return Html::button($label, $options);
     }
 
