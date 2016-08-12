@@ -28,14 +28,17 @@ class RbacController extends Controller
 
     public function actionIndex()
     {
-        $this->stdout("The action not support:\n\n", Console::FG_RED);
-        $this->stdout("\n");
+        $this->_registerPermission();
+        $this->_registerRole();
+        $this->_assignUser();
     }
     private function _registerPermission(){
         $permissions = [
             'create','update','delete'
         ];
         foreach ($permissions as $name) {
+            $token = "create Permission: ". $name ;
+            $this->stdout($token, Console::FG_RED);
             $permission = $this->_auth->createPermission($name);
             $this->_auth->add($permission);
         }
@@ -46,6 +49,8 @@ class RbacController extends Controller
             'administrator','manager','user'
         ];
         foreach ($roles as $name) {
+            $token = "create Role: ". $name ;
+            $this->stdout($token, Console::FG_RED);
             $role = $this->_auth->createRole($name);
             $this->_auth->add($role);
         }

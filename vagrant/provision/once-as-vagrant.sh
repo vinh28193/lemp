@@ -6,7 +6,7 @@ github_token=$(echo "$1")
 
 #== Bash helpers ==
 
-function info {
+function trace {
   echo " "
   echo "--> $1"
   echo " "
@@ -20,37 +20,37 @@ function ensure {
 
 #== Provision script ==
 
-info "Provision-script user: `whoami`"
+trace "Provision-script user: `whoami`"
 
-info "Configure composer"
+trace "Configure composer"
 composer config --global github-oauth.github.com ${github_token}
 ensure "Done!"
 
-info "Install plugins for composer"
+trace "Install plugins for composer"
 composer global require "fxp/composer-asset-plugin:~1.1.1" --no-progress
 
-info "Install codeception"
+trace "Install codeception"
 composer global require "codeception/codeception=2.0.*" "codeception/specify=*" "codeception/verify=*" --no-progress
 echo 'export PATH=/home/vagrant/.config/composer/vendor/bin:$PATH' | tee -a /home/vagrant/.profile
 ensure "Done!"
 
-info "Install project dependencies"
+trace "Install project dependencies"
 cd /app
 composer --no-progress --prefer-dist install
 ensure "Done!"
 
-info "Init project"
+trace "Init project"
 php ./init --env=Development --overwrite=y
 ensure "Done!"
 
-info "Apply migrations"
+trace "Apply migrations"
 php ./yii migrate <<< "yes"
 ensure "Done!"
 
-info "Create bash-alias 'app' for vagrant user"
+trace "Create bash-alias 'app' for vagrant user"
 echo 'alias app="cd /app"' | tee /home/vagrant/.bash_aliases
 ensure "Done!"
 
-info "Enabling colorized prompt for guest console"
+trace "Enabling colorized prompt for guest console"
 sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/" /home/vagrant/.bashrc
 ensure "Done!"

@@ -41,4 +41,6 @@ return [
           	]
       ],
     ],
+    'allowedIPs' => ['192.168.83.*', '127.0.0.1', '::1'],
+    'availableLocales' => ['en','vi'],
 ];

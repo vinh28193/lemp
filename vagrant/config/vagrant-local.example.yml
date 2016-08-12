@@ -6,6 +6,9 @@ github_token: <your-personal-github-token>
 # Guest OS timezone
 timezone: Europe/London
 
+# Select the box
+box: ubuntu/trusty64
+
 # Are we need check box updates for every 'vagrant up'?
 box_check_update: false
 
