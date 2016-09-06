@@ -1,6 +1,6 @@
 <?php
 
-namespace api\resources;
+namespace api\versions\v1\models;
 
 use Yii;
 use yii\web\Link;

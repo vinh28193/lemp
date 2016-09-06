@@ -1,5 +1,5 @@
 <?php
-namespace api\versions\v1;
+namespace api\versions\v1\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -16,7 +16,7 @@ class UserController extends ActiveController
     /**
      * @var string
      */
-    public $modelClass = 'api\resources\User';
+    public $modelClass = 'api\versions\v1\models\User';
 
     /**
      * @inheritdoc

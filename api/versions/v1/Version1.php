@@ -18,7 +18,7 @@ use yii\filters\auth\QueryParamAuth;
 
 class Version1 extends Module
 {
-    public $controllerNamespace = 'api\versions\v1';
+    public $controllerNamespace = 'api\versions\v1\controllers';
 
     public $urlRuleClass = 'yii\rest\UrlRule';
 

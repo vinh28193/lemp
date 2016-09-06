@@ -1,5 +1,5 @@
 <?php
-namespace api\versions\v1;
+namespace api\versions\v1\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -16,7 +16,7 @@ class ArticleController extends ActiveController
     /**
      * @var string
      */
-    public $modelClass = 'api\resources\Article';
+    public $modelClass = 'api\versions\v1\models\Article';
 
     /**
      * @inheritdoc

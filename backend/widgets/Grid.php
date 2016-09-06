@@ -84,7 +84,7 @@ class Grid extends GridView
         ];
         
     }
-    protected function parseColumn(){
+    protected function parseColumns(){
         $columnList = [];
         $columnOptions = [
             'format' => 'raw',
@@ -93,12 +93,36 @@ class Grid extends GridView
             'noWrap' => false,
             'pageSummary' => false,
         ];
-        $columnHeader = [
-            ['class' => self::COLUMN_SERIAL],
-            ['class' => self::COLUMN_CHECKBOK]
+        $columnHeaders = [
+            ArrayHelper::merge(['class' => self::COLUMN_SERIAL],$columnOptions),
+            ArrayHelper::merge(['class' => self::COLUMN_CHECKBOK],$columnOptions)
         ];
-        $columnList = array_merge($columnHeader,$columnList);
-        return $this->columns;
+        $columnAction = [];
+        foreach ($columnHeaders as  $column) {
+            $columnList[] = Yii::createObject($column);
+        }
+        return $columnList;
+    }
+    protected function initColumns()
+    {
+        if (empty($this->columns)) {
+            $this->guessColumns();
+        }
+        foreach ($this->columns as $i => $column) {
+            if (is_string($column)) {
+                $column = $this->createDataColumn($column);
+            } else {
+                $column = Yii::createObject(array_merge([
+                    'class' => $this->dataColumnClass ? : DataColumn::className(),
+                    'grid' => $this,
+                ], $column));
+            }
+            if (!$column->visible) {
+                unset($this->columns[$i]);
+                continue;
+            }
+            $this->columns[$i] = $column;
+        }
     }
     protected function initBootstrapStyle(){
         parent::initBootstrapStyle();
