@@ -20,8 +20,6 @@ use yii\behaviors\BlameableBehavior;
  * @property string $description
  * @property string $body
  * @property integer $category_id
- * @property string $thumbnail_base_url
- * @property string $thumbnail_path
  * @property integer $author_id
  * @property integer $updater_id
  * @property string $view
@@ -39,11 +37,6 @@ class Article extends ActiveRecord
     const STATUS_NEW = 0;
     const STATUS_PUBLISHED = 1;
     const STATUS_DRAFT = 2;
-    /**
-    * @var mixed thumbnail the attribute for rendering the file input
-    * widget for upload on the form
-    */
-    public $thumbnail;
 
     /**
      * @inheritdoc
@@ -96,7 +89,7 @@ class Article extends ActiveRecord
             [['slug', 'title', 'body'], 'required'],
             [['description', 'body'], 'string'],
             [['category_id', 'author_id', 'updater_id', 'status', 'published_at', 'updated_at'], 'integer'],
-            [['slug', 'short_description', 'thumbnail_base_url', 'thumbnail_path'], 'string', 'max' => 1024],
+            [['slug', 'short_description'], 'string', 'max' => 1024],
             [['title'], 'string', 'max' => 512],
             [['view'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -118,8 +111,6 @@ class Article extends ActiveRecord
             'description' => 'Description',
             'body' => 'Body',
             'category_id' => 'Category ID',
-            'thumbnail_base_url' => 'Thumbnail Base Url',
-            'thumbnail_path' => 'Thumbnail Path',
             'author_id' => 'Author ID',
             'updater_id' => 'Updater ID',
             'view' => 'View',
@@ -153,14 +144,6 @@ class Article extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'updater_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getArticleAttachments()
-    {
-        return $this->hasMany(ArticleAttachment::className(), ['article_id' => 'id']);
-    }
-
      /**
      *  get status label
      *  @param bool $status default false if not set.
@@ -171,7 +154,7 @@ class Article extends ActiveRecord
             $statusLabel = [
                 self::STATUS_NEW => 'New',
                 self::STATUS_PUBLISHED => 'Published',
-                self::STATUS_DRAFT => 'draft'
+                self::STATUS_DRAFT => 'Draft'
             ];
         return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
     }

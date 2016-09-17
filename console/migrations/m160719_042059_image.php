@@ -13,16 +13,15 @@ class m160719_042059_image extends Migration
         
         $this->createTable('{{%image}}', [
             'id' => $this->primaryKey(),
-            'target' => $this->string(512),
-            'target_id' => $this->integer(),
+            'target' => $this->string(512)->notNull(),
+            'target_id' => $this->integer->notNull(),
             'width' => $this->integer(),
             'height' => $this->integer(),
             'quality' => $this->integer(),
-            'type' => $this->string(64),
-            'size' => $this->integer(10),
-            'is_thumbnail' =>$this->smallInteger()->notNull()->defaultValue(1),
+            'type' => $this->string(64)->notNull(),
+            'size' => $this->string(64)->notNull()->defaultValue('small'),
             'status' =>$this->smallInteger()->notNull()->defaultValue(1),
-            'created_at' => $this->integer()
+            'upload_at' => $this->integer()
         ], $tableOptions);
     }
 

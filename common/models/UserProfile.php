@@ -27,10 +27,6 @@ class UserProfile extends ActiveRecord
     const GENDER_FEMALE = 2;
     
     /**
-     * @var string $avatar
-     */
-    public $avatar;
-    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -129,21 +125,7 @@ class UserProfile extends ActiveRecord
     {
         return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
     }
-    /**
-    * Process upload of thumbnail
-    * @return mixed the uploaded thumbnail instance
-    */
-    public function upload() {
-        // get the uploaded file instance. for multiple file uploads
-        // the following data will return an array (you may need to use
-        // getInstances method)
-        $avatar = UploadedFile::getInstance($this, 'avatar');
-        // if no thumbnail was uploaded abort the upload
-        if (empty($avatar)) {
-            return false;
-        }
-        // generate store the source file name
-    }
+
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

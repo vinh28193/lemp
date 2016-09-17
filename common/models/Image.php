@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%image}}".
@@ -15,9 +18,8 @@ use Yii;
  * @property integer $quality
  * @property string $type
  * @property integer $size
- * @property integer $is_thumbnail
  * @property integer $status
- * @property integer $created_at
+ * @property integer $upload_at
  */
 class Image extends \yii\db\ActiveRecord
 {
@@ -35,9 +37,9 @@ class Image extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['target_id', 'width', 'height', 'quality', 'size', 'is_thumbnail', 'status', 'created_at'], 'integer'],
+            [['target_id', 'width', 'height', 'quality', , 'status', 'upload_at'], 'integer'],
             [['target'], 'string', 'max' => 512],
-            [['type'], 'string', 'max' => 64],
+            [['type','size'], 'string', 'max' => 64],
         ];
     }
 
@@ -55,9 +57,8 @@ class Image extends \yii\db\ActiveRecord
             'quality' => Yii::t('app', 'Quality'),
             'type' => Yii::t('app', 'Type'),
             'size' => Yii::t('app', 'Size'),
-            'is_thumbnail' => Yii::t('app', 'Is Thumbnail'),
             'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'upload_at' => Yii::t('app', 'Created At'),
         ];
     }
 

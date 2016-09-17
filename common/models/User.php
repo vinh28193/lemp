@@ -8,18 +8,20 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
+
 /**
  * User model
  *
  * @property integer $id
  * @property string $username
+ * @property string $email
  * @property string $auth_key
  * @property string $access_token
  * @property string $password_hash
  * @property string $password_reset_token
- * @property string $oauth_client
- * @property string $oauth_client_user_id
- * @property string $email
+ * @property string $oauth_id
+ * @property string $oauth_secret
+ * @property string $type
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
@@ -31,11 +33,21 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_INACTIVE= 0;
     const STATUS_ACTIVE = 1;
+
     const ROLE_USER = 'user';
     const ROLE_MANAGER = 'manager';
     const ROLE_ADMINISTRATOR = 'administrator';
-    const EVENT_AFTER_SIGNUP = 'afterSignup';
-    const EVENT_AFTER_LOGIN = 'afterLogin';
+
+    const EVENT_USER_REGISTER = 'userRegister';
+    const EVENT_BEFORE_LOGIN = 'beforeLogin';
+    const EVENT_AFTER_SIGNUP = 'afterLogin';
+
+    const TYPE_DEFAULT = 'default';
+    const TYPE_OAUTH_1 = 'oauth1';
+    const TYPE_OAUTH_2 = 'oauth2';
+
+    const IMAGE_TARGET = 'user';
+
     /**
      * @inheritdoc
      */
@@ -288,5 +300,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUserProfile()
     {
         return $this->hasOne(UserProfile::className(), ['user_id'=>'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImage()
+    {
+        return $this->hasMany(Image::className(), [
+            'target'=>self::IMAGE_TARGET,
+            'target_id' => 'id'
+        ]);
     }
 }

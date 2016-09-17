@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use common\models\queries\ArticleCategoryQuery;
 
 /**
  * This is the model class for table "{{%article_category}}".
@@ -60,7 +61,7 @@ class ArticleCategory extends ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\queries\ArticleCategoryQuery(get_called_class());
+        return new ArticleCategoryQuery(get_called_class());
     }
 
     /**

@@ -91,7 +91,6 @@ class Article extends \common\models\Article implements Linkable
     {
         return [
             Link::REL_SELF => Url::to(['user/view', 'id' => $this->id], true),
-            'thumbnail' => Yii::getAlias(implode('/',[ $this->thumbnail_base_url, $this->thumbnail_path])),
         ];
     }
 }

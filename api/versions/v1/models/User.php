@@ -102,7 +102,6 @@ class User extends \common\models\User implements RateLimitInterface,Linkable
     {
         return [
             Link::REL_SELF => Url::to(['user/view', 'id' => $this->id], true),
-            'avatar' => $this->userProfile->getAvatar(Yii::getAlias('@web/storages/user/default.jpg')),
         ];
     }
 }
