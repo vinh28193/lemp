@@ -11,9 +11,7 @@ return [
     'basePath' => dirname(__DIR__),    
     'bootstrap' => ['log'],
     'modules' => [
-        'v1' => [
-            'class' => 'api\versions\v1\Version1',
-        ],
+        // modules config here
     ],
     'components' => [
         'user' => [

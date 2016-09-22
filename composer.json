@@ -20,7 +20,6 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-authclient": "^2.0.0",
         "yiisoft/yii2-jui": "^2.0.0",
-        "yiisoft/yii2-redis": "~2.0.0",
         "yiisoft/yii2-imagine": "~2.0.0",
         "bower-asset/cropper": "*",
         "bower-asset/owl.carousel":"*",
@@ -33,14 +32,20 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-detail-view": "*",
         "kartik-v/yii2-mpdf": "*",
-        "kartik-v/yii2-social": "@dev",
-        "pendalf89/yii2-filemanager": "*"
+        "pendalf89/yii2-filemanager": "*",
+        "google/apiclient": "*",
+        "facebook/graph-sdk": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
+        "yiisoft/yii2-faker": "*",
+        "yiisoft/yii2-debug": "*",
+        "codeception/base": "*",
+        "codeception/codeception": "*",
+        "codeception/specify": "*",
+        "codeception/verify": "*",
+        "codeception/c3": "*"
     },
     "config": {
         "process-timeout": 1800
