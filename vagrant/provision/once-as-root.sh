@@ -8,13 +8,13 @@ timezone=$(echo "$1")
 
 function trace {
   echo " "
-  echo "==> $1"
+  echo "--> $1"
   echo " "
 }
 
 function ensure {
   echo " "
-  echo "<== $1"
+  echo "<-- $1"
   echo " "
 }
 
