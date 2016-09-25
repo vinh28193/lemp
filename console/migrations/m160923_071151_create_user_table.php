@@ -22,6 +22,7 @@ class m160923_071151_create_user_table extends Migration
         }
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
+            'app_id' => $this->integer()->notNull(),
             'username' => $this->string(32),
             'email' => $this->string()->notNull(),
             'oauth_client_id' => $this->string(),
@@ -31,7 +32,7 @@ class m160923_071151_create_user_table extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
             'scenario' => $this->string()->defaultValue('default'),
-            'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
+            'status' => $this->smallInteger()->notNull()->defaultValue(1),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ],$tableOptions);

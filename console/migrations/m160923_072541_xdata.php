@@ -26,7 +26,7 @@ class m160923_072541_xdata extends Migration
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster'),
             'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
             'access_token' => Yii::$app->getSecurity()->generateRandomString(40),
-            'type' => 'default',
+            'scenario' => 'default',
             'status' => 1,
             'created_at' => new Expression('NOW()'),
             'updated_at' => new Expression('NOW()')

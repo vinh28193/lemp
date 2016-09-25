@@ -34,7 +34,8 @@
         "kartik-v/yii2-mpdf": "*",
         "pendalf89/yii2-filemanager": "*",
         "google/apiclient": "*",
-        "facebook/graph-sdk": "*"
+        "facebook/graph-sdk": "*",
+        "redo/redo-vn": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
