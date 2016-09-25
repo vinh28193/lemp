@@ -1,12 +1,12 @@
 <?php
 
-namespace backend\behaviors;
+namespace common\behaviors;
 
 use yii\base\Behavior;
 use yii\web\User;
 
 /**
- * @author Eugene Terentev <eugene@terentev.net>
+ * @author
  */
 class LoginTimestampBehavior extends Behavior
 {

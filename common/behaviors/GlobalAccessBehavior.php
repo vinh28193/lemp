@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\behaviors;
+namespace common\behaviors;
 
 use yii\base\Behavior;
 use yii\base\Controller;
@@ -8,7 +8,7 @@ use Yii;
 
 /**
  * Class GlobalAccessBehavior
- * @package backend\behaviors
+ * @package common\behaviors
  */
 class GlobalAccessBehavior extends Behavior
 {

@@ -1,5 +1,5 @@
 <?php
-namespace backend\behaviors;
+namespace common\behaviors;
 
 use Yii;
 use yii\base\Behavior;
@@ -29,7 +29,7 @@ use yii\db\ActiveRecord;
  *     ];
  * }
  * ```
- * @package backend\behaviors
+ * @package common\behaviors
  */
 class CacheInvalidateBehavior extends Behavior
 {

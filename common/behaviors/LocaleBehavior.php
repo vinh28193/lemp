@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\behaviors;
+namespace common\behaviors;
 
 use yii\base\Behavior;
 use Yii;
@@ -8,7 +8,7 @@ use yii\web\Application;
 
 /**
  * Class LocaleBehavior
- * @package backend\behaviors
+ * @package common\behaviors
  */
 class LocaleBehavior extends Behavior
 {

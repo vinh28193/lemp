@@ -3,11 +3,11 @@
 namespace common\models\queries;
 
 /**
- * This is the ActiveQuery class for [[\common\models\ArticleCategory]].
+ * This is the ActiveQuery class for [[\common\models\Category]].
  *
  * @see \common\models\ArticleCategory
  */
-class ArticleCategoryQuery extends \yii\db\ActiveQuery
+class CategoryQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class ArticleCategoryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ArticleCategory[]|array
+     * @return \common\models\Category[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class ArticleCategoryQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \common\models\ArticleCategory|array|null
+     * @return \common\models\Category|array|null
      */
     public function one($db = null)
     {
