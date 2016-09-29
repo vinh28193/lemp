@@ -31,6 +31,10 @@ class Category extends ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
 
+    const SCENARIO_CREATE = 'create';
+    const SCENARIO_UPDATE = 'update';
+
+    const IMAGE_TARGET = 'user';
     /**
      * @inheritdoc
      */
@@ -124,6 +128,11 @@ class Category extends ActiveRecord
             ];
         return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
     }
+
+    /**
+     *  get data for select2
+     *  @return array
+     */
     public function getSelect2Data(){
         return ArrayHelper::map(self::find()->all(),'id','title');
     }

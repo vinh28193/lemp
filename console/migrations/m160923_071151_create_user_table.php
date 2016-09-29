@@ -2,6 +2,7 @@
 
 use yii\db\Migration;
 use common\models\User;
+
 /**
  * Handles the creation of table `{{%user}}`.
  */
@@ -39,6 +40,6 @@ class m160923_071151_create_user_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable(User::tableName());
     }
 }

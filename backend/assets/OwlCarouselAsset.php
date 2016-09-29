@@ -14,6 +14,5 @@ class OwlCarouselAsset extends AssetBundle
     ];
     public $js = [
     	'owl.carousel.js'
-   
     ];
 }

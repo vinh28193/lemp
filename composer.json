@@ -21,6 +21,7 @@
         "yiisoft/yii2-authclient": "^2.0.0",
         "yiisoft/yii2-jui": "^2.0.0",
         "yiisoft/yii2-imagine": "~2.0.0",
+        "bower-asset/admin-lte": "^2.0",
         "bower-asset/cropper": "*",
         "bower-asset/owl.carousel":"*",
         "bower-asset/sweetalert" : "*",
@@ -35,7 +36,7 @@
         "pendalf89/yii2-filemanager": "*",
         "google/apiclient": "*",
         "facebook/graph-sdk": "*",
-        "redo/redo-vn": "*"
+        "abhi1693/yii2-system-info": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-
+use common\models\Category;
 /**
  * Handles the creation of table `{{%category}}`.
  * Has foreign keys to the tables:
@@ -15,7 +15,7 @@ class m160923_072330_create_category_table extends Migration
      */
     public function up()
     {
-        $this->createTable('{{%category}}', [
+        $this->createTable(Category::tableName(), [
             'id' => $this->primaryKey(),
             'title' => $this->string(512)->notNull(),
             'slug' => $this->string(1024)->notNull(),
@@ -28,16 +28,16 @@ class m160923_072330_create_category_table extends Migration
         // creates index for column `parent_id`
         $this->createIndex(
             'idx-category-parent_id',
-            '{{%category}}',
+             Category::tableName(),
             'parent_id'
         );
 
         // add foreign key for table `{{%category}}`
         $this->addForeignKey(
             'fk-category-parent_id',
-            '{{%category}}',
+            Category::tableName(),
             'parent_id',
-            '{{%category}}',
+            Category::tableName(),
             'id',
             'CASCADE'
         );
@@ -51,15 +51,15 @@ class m160923_072330_create_category_table extends Migration
         // drops foreign key for table `{{%category}}`
         $this->dropForeignKey(
             'fk-category-parent_id',
-            'category'
+            Category::tableName()
         );
 
         // drops index for column `parent_id`
         $this->dropIndex(
             'idx-category-parent_id',
-            'category'
+            Category::tableName()
         );
 
-        $this->dropTable('category');
+        $this->dropTable(Category::tableName());
     }
 }
