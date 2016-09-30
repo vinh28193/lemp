@@ -34,7 +34,7 @@ class Category extends ActiveRecord
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';
 
-    const IMAGE_TARGET = 'user';
+    const IMAGE_TARGET = 'category';
     /**
      * @inheritdoc
      */

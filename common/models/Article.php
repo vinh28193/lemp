@@ -9,34 +9,31 @@ use yii\behaviors\AttributeBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
-
+use common\models\queries\ArticleQuery;
 /**
  * This is the model class for table "{{%article}}".
  *
  * @property integer $id
- * @property string $slug
  * @property string $title
+ * @property string $slug
  * @property string $short_description
  * @property string $description
  * @property string $body
+ * @property integer $view
  * @property integer $category_id
  * @property integer $author_id
  * @property integer $updater_id
- * @property string $view
  * @property integer $status
  * @property integer $published_at
  * @property integer $updated_at
- *
- * @property User $author
- * @property ArticleCategory $category
- * @property User $updater
- * @property ArticleAttachment[] $articleAttachments
  */
 class Article extends ActiveRecord
 {
     const STATUS_NEW = 0;
     const STATUS_PUBLISHED = 1;
     const STATUS_DRAFT = 2;
+
+    const IMAGE_TARGET = 'article';
 
     /**
      * @inheritdoc
@@ -77,7 +74,7 @@ class Article extends ActiveRecord
      */
     public static function find()
     {
-        return new \common\models\queries\ArticleQuery(get_called_class());
+        return new ArticleQuery(get_called_class());
     }
 
     /**
@@ -86,14 +83,13 @@ class Article extends ActiveRecord
     public function rules()
     {
         return [
-            [['slug', 'title', 'body'], 'required'],
+            [['title', 'slug', 'category_id', 'author_id', 'updater_id'], 'required'],
             [['description', 'body'], 'string'],
-            [['category_id', 'author_id', 'updater_id', 'status', 'published_at', 'updated_at'], 'integer'],
-            [['slug', 'short_description'], 'string', 'max' => 1024],
+            [['view', 'category_id', 'author_id', 'updater_id', 'status', 'published_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 512],
-            [['view'], 'string', 'max' => 255],
+            [['slug', 'short_description'], 'string', 'max' => 1024],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ArticleCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['updater_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updater_id' => 'id']],
         ];
     }
@@ -104,19 +100,19 @@ class Article extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'slug' => 'Slug',
-            'title' => 'Title',
-            'short_description' => 'Short Description',
-            'description' => 'Description',
-            'body' => 'Body',
-            'category_id' => 'Category ID',
-            'author_id' => 'Author ID',
-            'updater_id' => 'Updater ID',
-            'view' => 'View',
-            'status' => 'Status',
-            'published_at' => 'Published At',
-            'updated_at' => 'Updated At',
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Title'),
+            'slug' => Yii::t('app', 'Slug'),
+            'short_description' => Yii::t('app', 'Short Description'),
+            'description' => Yii::t('app', 'Description'),
+            'body' => Yii::t('app', 'Body'),
+            'view' => Yii::t('app', 'View'),
+            'category_id' => Yii::t('app', 'Category ID'),
+            'author_id' => Yii::t('app', 'Author ID'),
+            'updater_id' => Yii::t('app', 'Updater ID'),
+            'status' => Yii::t('app', 'Status'),
+            'published_at' => Yii::t('app', 'Published At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -157,25 +153,5 @@ class Article extends ActiveRecord
                 self::STATUS_DRAFT => 'Draft'
             ];
         return $status ? ArrayHelper::getValue($statusLabel,$this->status) : $statusLabel;
-    }
-    
-    /**
-     *  get full name column with table name or not if not set tableName
-     *  @param string $attribute
-     *  @param string $tableName 
-     *  @return string
-     */
-    public static function getColumn($attribute,$tableName = null)
-    {
-        return is_null($tableName) ? self::tableName() .'.'.$attribute : $tableName. '.' .$attribute;
-    }
-    /**
-     *  Quote Table Name will be replace pattern table prefix in tableName when use table name with prefix
-     *  @param string $pattern if not set default '/{|{{|%|}|}}/'
-     *  @return string 
-     */
-    public static function getQuoteTableName($string = '',$pattern = '/{|{{|%|}|}}/')
-    {
-        return preg_match($pattern,self::tableName()) ? preg_replace($pattern,$string,self::tableName()) : self::tableName() ;
     }
 }
