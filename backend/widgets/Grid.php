@@ -29,47 +29,18 @@ class Grid extends GridView
      */
     public function run()
     {
-        Pjax::begin();
         parent::run();
-        Pjax::end();
     }
     /**
      * Initialize bootstrap specific styling.
      */
     protected function initBootstrapStyle()
     {
-        Html::addCssClass($this->tableOptions, 'kv-grid-table');
+        Html::addCssClass($this->tableOptions, 'table table-bordered table-hover dataTable');
         if (!$this->bootstrap) {
             return;
         }
-        Html::addCssClass($this->tableOptions, 'table');
-        if ($this->hover) {
-            Html::addCssClass($this->tableOptions, 'table-hover');
-        }
-        if ($this->bordered) {
-            Html::addCssClass($this->tableOptions, 'table-bordered');
-        }
-        if ($this->striped) {
-            Html::addCssClass($this->tableOptions, 'table-striped');
-        }
-        if ($this->condensed) {
-            Html::addCssClass($this->tableOptions, 'table-condensed');
-        }
-        if ($this->floatHeader) {
-            if ($this->perfectScrollbar) {
-                $this->floatOverflowContainer = true;
-            }
-            if ($this->floatOverflowContainer) {
-                $this->responsive = false;
-                Html::addCssClass($this->containerOptions, 'kv-grid-wrapper');
-            }
-        }
-        if ($this->responsive) {
-            Html::addCssClass($this->containerOptions, 'table-responsive');
-        }
-        if ($this->responsiveWrap) {
-            Html::addCssClass($this->tableOptions, 'kv-table-wrap');
-        }
+        
     }
 
     /**
@@ -310,5 +281,25 @@ class Grid extends GridView
         $view->registerJs("{$this->_toggleOptionsVar}={$opts};", View::POS_HEAD);
         GridToggleDataAsset::register($view);
         $this->_toggleScript = "kvToggleData({$this->_toggleOptionsVar});";
+    }
+    
+    /**
+     * Renders the table page summary.
+     *
+     * @return string the rendering result.
+     */
+    public function renderPageSummary()
+    {
+        if (!$this->showPageSummary) {
+            return null;
+        }
+        $cells = [];
+        /** @var DataColumn $column */
+        foreach ($this->columns as $column) {
+            $cells[] = $column->renderPageSummaryCell();
+        }
+        $tag = ArrayHelper::remove($this->pageSummaryContainer, 'tag', 'tbody');
+        $content = Html::tag('tr', implode('', $cells), $this->pageSummaryRowOptions);
+        return Html::tag($tag, $content, $this->pageSummaryContainer);
     }
 }
