@@ -6,34 +6,16 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\searchs\CategorySearch */
 /* @var $form yii\widgets\ActiveForm */
-?>
 
-<div class="category-search">
-
-    <?php $form = ActiveForm::begin([
+    $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
-    ]); ?>
+    ]);
 
-    <?= $form->field($model, 'id') ?>
+    echo $form->field($model, 'title');
 
-    <?= $form->field($model, 'title') ?>
+    echo Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']);
+    echo Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']);
 
-    <?= $form->field($model, 'slug') ?>
-
-    <?= $form->field($model, 'parent_id') ?>
-
-    <?= $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+    ActiveForm::end(); 
+?>
